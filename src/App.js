@@ -20,15 +20,33 @@ function App() {
   }
   return (
     <div className="App">
-      <form onSubmit={handleSearch}>
-        <input onChange={e => setQuery(e.target.value)}/>
-        <button>Search for Pokemon</button>
-      </form>
+      <header className='App-header'>
+        <span>Search Pokemon by Name</span>
+        <form onSubmit={handleSearch}>
+          <input onChange={e => setQuery(e.target.value)}/>
+          <button>Search for Pokemon</button>
+        </form>
+      </header>
       <div className='pokemon-list'>
-        {pokemon.map(({ pokemon, type, hp, url_image }, i) => <div className='pokemon' key={pokemon + i}>
-          <h1>{pokemon}</h1>
-          <p>Type:{type}</p>
+        {pokemon.map(({ 
+          pokemon, 
+          type_1, 
+          type_2, hp, 
+          url_image, 
+          attack, 
+          defense, 
+          ability_1, 
+          ability_2,
+          ability_hidden,
+        }, i) => <div className='pokemon' key={pokemon + i}>
+          <h2>{pokemon}</h2>
+          <p>Types: {type_1}, {type_2}</p>
           <p>Hit Points:{hp}</p>
+          <p>Attack: {attack}</p>
+          <p>Defense: {defense}</p>
+          <p>Ability 1: {ability_1}</p>
+          <p>Ability 2: {ability_2}</p>
+          <p>Hidden Move: {ability_hidden}</p>
           <img src={url_image}/>
         </div>)}
       </div>
