@@ -4,11 +4,11 @@ import { getPokemon } from './services/fetch-utils';
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
-  const [query, setQuery] = useState('pi');
+  const [query, setQuery] = useState('');
 
   async function load(){
-    const { data : { results } } = await getPokemon(query);
-    setPokemon(results);
+    const response = await getPokemon(query);
+    setPokemon(response.data.results);
   }
   useEffect(() => {
     load();
@@ -25,11 +25,11 @@ function App() {
         <button>Search for Pokemon</button>
       </form>
       <div className='pokemon-list'>
-        {pokemon.map(({ name, type, hp, pokedex }, i) => <div key={name + i}>
-          <p>{name}</p>
-          <p>{type}</p>
-          <p>{hp}</p>
-          <href>{pokedex}</href>
+        {pokemon.map(({ pokemon, type, hp, url_image }, i) => <div className='pokemon' key={pokemon + i}>
+          <h1>{pokemon}</h1>
+          <p>Type:{type}</p>
+          <p>Hit Points:{hp}</p>
+          <img src={url_image}/>
         </div>)}
       </div>
     </div>
