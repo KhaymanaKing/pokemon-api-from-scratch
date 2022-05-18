@@ -9,9 +9,11 @@ const headers = {
 
 
 exports.handler = async (event, context) => {
+  console.log(event.queryStringParameters);
   try {
-    const response = await fetch('https://cat-fact.herokuapp.com/facts');
+    const response = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${event.queryStringParameters.searchFilter}`);
     const data = await response.json();
+    // console.log(data);
     const json = JSON.stringify({ data });
     
     return { 

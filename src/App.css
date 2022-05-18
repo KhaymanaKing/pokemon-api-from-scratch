@@ -14,8 +14,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #a6cdea;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,11 +28,25 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.pokemon {
+background-image: url(https://imgs.search.brave.com/GXDOXXWu_0XFoEdJ4W8ug8DYD5Gyuxwjx0OuZM_9QeA/rs:fit:1024:1200:1/g:ce/aHR0cDovL2ltZzA4/LmRldmlhbnRhcnQu/bmV0L2RhMjEvaS8y/MDE1LzI5OC85LzYv/cG9rZWRleF90ZW1w/bGF0ZV9ieV9maXJl/ZHJhZ29ucmVtLWQ5/ZWRkb24ucG5n);
+align-items: center;
+background-position: center;
+padding: 10px;
+margin: 10px;
+text-shadow: #282c34;
+box-shadow: 5px 5px 9px 0px rgba(0,0,0,0.69);
+}
+.pokemon img {
+  display: flex;
+  align-items: center;
+}
+.loading{
+  text-size-adjust: large;
 }
