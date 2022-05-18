@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { getPokemon } from './services/fetch-utils';
+import Loading from './Loading';
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
   const [query, setQuery] = useState('');
+  const [isLoading, setIsLoading] = useState (false);
 
   async function load(){
+    setIsLoading(true);
     const response = await getPokemon(query);
     setPokemon(response.data.results);
+    setIsLoading(false);
   }
   useEffect(() => {
     load();
@@ -28,27 +32,29 @@ function App() {
         </form>
       </header>
       <div className='pokemon-list'>
-        {pokemon.map(({ 
-          pokemon, 
-          type_1, 
-          type_2, hp, 
-          url_image, 
-          attack, 
-          defense, 
-          ability_1, 
-          ability_2,
-          ability_hidden,
-        }, i) => <div className='pokemon' key={pokemon + i}>
-          <h2>{pokemon}</h2>
-          <p>Types: {type_1}, {type_2}</p>
-          <p>Hit Points:{hp}</p>
-          <p>Attack: {attack}</p>
-          <p>Defense: {defense}</p>
-          <p>Ability 1: {ability_1}</p>
-          <p>Ability 2: {ability_2}</p>
-          <p>Hidden Move: {ability_hidden}</p>
-          <img src={url_image}/>
-        </div>)}
+        { isLoading ? <Loading/>
+          :        
+          pokemon.map(({ 
+            pokemon, 
+            type_1, 
+            type_2, hp, 
+            url_image, 
+            attack, 
+            defense, 
+            ability_1, 
+            ability_2,
+            ability_hidden,
+          }, i) => <div className='pokemon' key={pokemon + i}>
+            <h2>{pokemon}</h2>
+            <p>Types: {type_1}, {type_2}</p>
+            <p>Hit Points:{hp}</p>
+            <p>Attack: {attack}</p>
+            <p>Defense: {defense}</p>
+            <p>Ability 1: {ability_1}</p>
+            <p>Ability 2: {ability_2}</p>
+            <p>Hidden Move: {ability_hidden}</p>
+            <img src={url_image}/>
+          </div>)}
       </div>
     </div>
   );
